@@ -138,7 +138,9 @@ document
 
     const form = event.target;
     const formData = new FormData(form);
+    //fetch image
 
+    // fetching data from app.py
     fetch("/recommend", {
       method: "POST",
       body: formData,
@@ -162,10 +164,26 @@ document
             animeItem.classList.add("anime-item");
 
             const animeImage = document.createElement("img");
-            // animeImage.src = "https://via.placeholder.com/150";
-            animeImage.src = "/static/1.jpg";
+            animeImage.src = "https://via.placeholder.com/150";
             animeImage.alt = anime.title;
-
+            //image fetch
+            setTimeout(() => {
+              fetch(
+                `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
+                  anime.title
+                )}&limit=1`
+              )
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log(data);
+                  // console.log(data.data[5].images.jpg.image_url);
+                  animeImage.src = data.data[0].images.jpg.image_url;
+                  animeImage.alt = anime.title;
+                })
+                .catch((e) => {
+                  console.log(e);
+                });
+            }, 500);
             const animeTitle = document.createElement("h3");
             animeTitle.style.color = "#40f09d";
             animeTitle.textContent = anime.title;
