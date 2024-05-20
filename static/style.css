@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 
 *,
 *::after,
@@ -19,7 +20,9 @@ body {
   font-size: 0.875rem;
   line-height: 1.5;
   overflow-x: hidden;
-  font-family: "Nunito", sans-serif;
+  font-family: "Poppins", sans-serif;
+
+  /* font-family: "Nunito", sans-serif; */
   font-optical-sizing: auto;
 }
 .search-bar input {
@@ -248,9 +251,26 @@ button:hover::after,
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  background: #053504 linear-gradient(to bottom, #48db2a, transparent);
+  z-index: 10;
+  background: #42ebf1 linear-gradient(to bottom, #48db2a, transparent);
   transition: 0.5s ease-in-out;
+}
+.overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: #3bc9cef5 linear-gradient(to bottom, #48db2ac0, transparent);
+  transition: 0.5s ease-in-out;
+}
+.zoom-effect {
+  transition: transform 0.3s ease;
+}
+
+.zoom-effect:hover {
+  transform: scale(1.1);
 }
 
 .section-heading {
@@ -275,7 +295,7 @@ button:hover::after,
   position: fixed;
   width: 100%;
   padding: 1.0625rem 0;
-  z-index: 1;
+  z-index: 12;
   background: rgb(255, 255, 255);
   box-shadow: -1px -4px 20px 0px #7aac85;
 }
@@ -310,7 +330,7 @@ button:hover::after,
     top: calc(100% + 2.625rem);
     opacity: 1;
     visibility: visible;
-    z-index: 1;
+    z-index: 10;
   }
 }
 

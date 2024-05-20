@@ -2,6 +2,7 @@ let menu = document.querySelector(".header .menu");
 let navgation = document.querySelector(".header .main-navgation");
 let links = document.querySelectorAll(".header .main-navgation a");
 let overlay = document.querySelector(".overlay");
+let overlay1 = document.querySelector(".overlay1");
 
 // Open Navgation Links For Tablets And Mobile.
 function openMobileNavgation() {
@@ -47,6 +48,9 @@ function controlOverlay(status) {
   if (status == "open") {
     overlay.classList.add("fade-in");
     overlay.classList.remove("fade-out");
+    overlay1.classList.remove("fade-in");
+    loginForm_div.classList.add("none");
+    overlay1.classList.add("fade-out");
   } else {
     overlay.classList.add("fade-out");
     overlay.classList.remove("fade-in");
@@ -128,83 +132,95 @@ function controlOverlay(status) {
 // }
 // // document.addEventListener("DOMContentLoaded", loadRecommendations);
 const submit = document.getElementById("submit");
+const search_input = document.getElementById("title");
+
 submit.addEventListener("click", () => {
-  document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
+  if (search_input.value == null || search_input.value == "") {
+    alert("please Enter a Anime Name...");
+  } else {
+    document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
+  }
 });
 document
   .getElementById("recommendationForm")
   .addEventListener("submit", function (event) {
     event.preventDefault();
+    if (search_input.value == null || search_input.value == "") {
+      alert("please Enter a Anime Name...");
+    } else {
+      document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
 
-    const form = event.target;
-    const formData = new FormData(form);
-    //fetch image
+      const form = event.target;
+      const formData = new FormData(form);
+      //fetch image
 
-    // fetching data from app.py
-    fetch("/recommend", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        document
-          .getElementById("spinner")
-          .classList.remove("fa-spinner", "fa-spin");
-        const recommendationsDiv = document.getElementById("recommendations");
-        const error = document.getElementById("error");
-        recommendationsDiv.innerHTML = "";
+      // fetching data from app.py
+      fetch("/recommend", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          document
+            .getElementById("spinner")
+            .classList.remove("fa-spinner", "fa-spin");
+          const recommendationsDiv = document.getElementById("recommendations");
+          const error = document.getElementById("error");
+          recommendationsDiv.innerHTML = "";
 
-        if (data.error) {
-          error.innerHTML = `<b>${data.error}</b>`;
-          error.classList.remove("none");
-        } else {
-          console.log(data);
-          data.forEach((anime) => {
-            const animeItem = document.createElement("div");
-            animeItem.classList.add("anime-item");
+          if (data.error) {
+            error.innerHTML = `<b>${data.error}</b>`;
+            error.classList.remove("none");
+          } else {
+            console.log(data);
+            data.forEach((anime) => {
+              const animeItem = document.createElement("div");
+              animeItem.classList.add("anime-item");
 
-            const animeImage = document.createElement("img");
-            animeImage.src = "https://via.placeholder.com/150";
-            animeImage.alt = anime.title;
-            //image fetch
-            setTimeout(() => {
-              fetch(
-                `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
-                  anime.title
-                )}&limit=1`
-              )
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log(data);
-                  // console.log(data.data[5].images.jpg.image_url);
-                  animeImage.src = data.data[0].images.jpg.image_url;
-                  animeImage.alt = anime.title;
-                })
-                .catch((e) => {
-                  console.log(e);
-                });
-            }, 500);
-            const animeTitle = document.createElement("h3");
-            animeTitle.style.color = "#40f09d";
-            animeTitle.textContent = anime.title;
+              const animeImage = document.createElement("img");
+              animeImage.src = "https://via.placeholder.com/150";
+              animeImage.alt = anime.title;
+              animeImage.className = "zoom-effect";
+              //image fetch
+              setTimeout(() => {
+                fetch(
+                  `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
+                    anime.title
+                  )}&limit=1`
+                )
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log(data);
+                    // console.log(data.data[5].images.jpg.image_url);
+                    animeImage.src = data.data[0].images.jpg.image_url;
+                    animeImage.alt = anime.title;
+                  })
+                  .catch((e) => {
+                    console.log(e);
+                  });
+              }, 500);
+              const animeTitle = document.createElement("h3");
+              animeTitle.style.color = "#40f09d";
+              animeTitle.textContent = anime.title;
 
-            // const animeDescription = document.createElement("p");
+              // const animeDescription = document.createElement("p");
 
-            // animeDescription.textContent = anime.synopsis;
-            const rating = document.createElement("p");
-            rating.style.color = "red";
-            rating.innerHTML = `<h4>Rating :${anime.rating}</h4>`;
-            animeItem.appendChild(animeImage);
-            animeItem.appendChild(animeTitle);
-            // animeItem.appendChild(animeDescription);
-            animeItem.appendChild(rating);
+              // animeDescription.textContent = anime.synopsis;
+              const rating = document.createElement("p");
+              rating.style.color = "red";
+              rating.innerHTML = `<h4>Rating :${anime.rating}</h4>`;
+              animeItem.appendChild(animeImage);
+              animeItem.appendChild(animeTitle);
+              // animeItem.appendChild(animeDescription);
+              animeItem.appendChild(rating);
 
-            recommendationsDiv.appendChild(animeItem);
-          });
-        }
+              recommendationsDiv.appendChild(animeItem);
+            });
+          }
 
-        setTimeout((e) => {
-          error.classList.add("none");
-        }, 5000);
-      });
+          setTimeout((e) => {
+            error.classList.add("none");
+          }, 5000);
+        });
+    }
   });
