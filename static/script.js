@@ -134,6 +134,28 @@ function controlOverlay(status) {
 const submit = document.getElementById("submit");
 const search_input = document.getElementById("title");
 
+// fetching image from API (jikan)-----------------------
+function imgFetch(animeName) {
+  return fetch(
+    `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
+      animeName.title
+    )}&limit=1`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data);
+      if (data.status === "429") {
+        return imgFetch(animeName); // Return the recursive call
+      } else {
+        return data.data[0].images.jpg.image_url; // Return the image URL
+      }
+    })
+    .catch((error) => {
+      console.error("Error While fetching data:", error);
+      throw error;
+    });
+}
+// -------------------------------------------------------------------
 submit.addEventListener("click", () => {
   if (search_input.value == null || search_input.value == "") {
     alert("please Enter a Anime Name...");
@@ -191,21 +213,15 @@ document
               animeImage.alt = anime.title;
               animeImage.className = "zoom-effect";
               //image fetch
-              setTimeout(() => {
-                fetch(
-                  `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
-                    anime.title
-                  )}&limit=1`
-                )
-                  .then((response) => response.json())
-                  .then((data) => {
-                    console.log(data);
-                    animeImage.src = data.data[0].images.jpg.image_url;
-                  })
-                  .catch((e) => {
-                    console.log(e);
-                  });
-              }, 500);
+              imgFetch(anime)
+                .then((imageUrl) => {
+                  // console.log("Image URL:", imageUrl);
+                  animeImage.src = imageUrl;
+                })
+                .catch((error) => {
+                  console.error("Failed to fetch image:", error);
+                });
+
               const animeTitle = document.createElement("h3");
               animeTitle.style.color = "#40f09d";
               animeTitle.textContent = anime.title;
