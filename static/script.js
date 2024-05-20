@@ -165,7 +165,14 @@ document
             .getElementById("spinner")
             .classList.remove("fa-spinner", "fa-spin");
           const recommendationsDiv = document.getElementById("recommendations");
+          // ---------------------------------------------
+          const a = document.createElement("a");
+          a.href = "#recommendations_section";
+          a.click();
+          // ------------------------------------------
           const error = document.getElementById("error");
+          error.classList.add("none");
+
           recommendationsDiv.innerHTML = "";
 
           if (data.error) {
@@ -173,6 +180,7 @@ document
             error.classList.remove("none");
           } else {
             console.log(data);
+
             data.forEach((anime) => {
               const animeItem = document.createElement("div");
               animeItem.classList.add("anime-item");
@@ -191,9 +199,7 @@ document
                   .then((response) => response.json())
                   .then((data) => {
                     console.log(data);
-                    // console.log(data.data[5].images.jpg.image_url);
                     animeImage.src = data.data[0].images.jpg.image_url;
-                    animeImage.alt = anime.title;
                   })
                   .catch((e) => {
                     console.log(e);
@@ -217,10 +223,6 @@ document
               recommendationsDiv.appendChild(animeItem);
             });
           }
-
-          setTimeout((e) => {
-            error.classList.add("none");
-          }, 5000);
         });
     }
   });

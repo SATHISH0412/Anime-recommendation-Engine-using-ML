@@ -14,7 +14,7 @@
   margin-top: 100px;
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 15px 20px rgba(2, 2, 2, 0.89);
 }
 .wrapper .title-text {
   display: flex;

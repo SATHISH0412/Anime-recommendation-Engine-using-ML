@@ -101,7 +101,7 @@
           </div>
           <!-- Links -->
           <div class="main-navgation hide-for-mobile">
-            <a href="#">Home</a><a href="#title">Get Recommendation</a
+            <a href="#">Home</a><a href="#container">Get Recommendation</a
             ><a href="#">About</a><a href="#">Contact</a>
           </div>
           <!-- Search Bar -->
@@ -131,14 +131,14 @@
       <section class="hero">
         <div class="container">
           <div class="hero-image"></div>
-          <div class="hero-text">
+          <div class="hero-text" id="container">
             <h1>Discover Your Next Favorite Anime</h1>
             <p>
               Explore the best anime recommendations curated just for you. Find
               your next adventure!
             </p>
             <!-- <h1>Anime Recommendation System</h1> -->
-            <div id="container" class="search-bar">
+            <div class="search-bar">
               <!-- <form action="/recommend" method="post" id="form"> -->
               <form id="recommendationForm">
                 <input
@@ -160,10 +160,11 @@
       </section>
 
       <!-- Recommendations Section -->
-      <section class="recommendations" id="recommendationsss">
+      <section class="recommendations" id="recommendations_section">
         <div class="container">
           <h2>Recommended Anime</h2>
           <!-- <h2>Top Anime Picks</h2> -->
+
           <div class="error none" id="error">No recommendation Found</div>
           <div class="anime-list" id="recommendations">
             <!-- Anime items will be injected here by JavaScript -->

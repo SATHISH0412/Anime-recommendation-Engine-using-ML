@@ -273,6 +273,9 @@ button:hover::after,
   transform: scale(1.1);
 }
 
+.tilt-effect:hover {
+  transform: rotateY(10deg) rotateX(10deg);
+}
 .section-heading {
   text-align: center;
   margin-bottom: 1.875rem;
