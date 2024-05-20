@@ -186,7 +186,8 @@ document
               animeItem.classList.add("anime-item");
 
               const animeImage = document.createElement("img");
-              animeImage.src = "https://via.placeholder.com/150";
+              animeImage.src = "/static/media/loadingSkeleton.svg";
+              // animeImage.src = "https://via.placeholder.com/150";
               animeImage.alt = anime.title;
               animeImage.className = "zoom-effect";
               //image fetch
