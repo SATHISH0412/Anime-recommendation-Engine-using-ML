@@ -219,7 +219,7 @@ document
                   animeImage.src = imageUrl;
                 })
                 .catch((error) => {
-                  console.error("Failed to fetch image:", error);
+                  // console.error("Failed to fetch image:", error);
                 });
 
               const animeTitle = document.createElement("h3");
