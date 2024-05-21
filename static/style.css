@@ -88,10 +88,26 @@ h2 {
 }
 
 .anime-item {
-  background-color: #f4f4f4;
+  background-color: rgba(218, 215, 215, 0.5);
   padding: 1rem;
   border-radius: 10px;
   text-align: center;
+  box-shadow: 2px 2px 3px black;
+}
+.anime-item:hover{
+  box-shadow: 3px 8px 7px black;
+  animation-name: sample;
+  animation-duration: 1s;
+  
+}
+@keyframes sample {
+  from{
+    transform: scale(1.0);
+  }
+  to{
+    transform: scale(1.1);
+  }
+  
 }
 
 .anime-item img {
@@ -103,6 +119,7 @@ h2 {
 
 .anime-item h3 {
   margin: 1rem 0;
+  text-transform: capitalize;
 }
 
 .anime-item p {

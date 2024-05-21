@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 
 app = Flask(__name__)
 
@@ -21,8 +23,14 @@ def get_cosine_similarity(df, title):
     title = title.lower().strip()
     
     if title not in anime_indices:
-        return None
-
+        matches = process.extract(title, df['title'].tolist(), limit=1)
+        if matches and matches[0][1] >= 80:  
+            similar_name = matches[0][0]
+            suggestion = f"Did you mean {similar_name}?"
+            return suggestion
+        else:
+            return "Title not found."
+    
     idx = anime_indices[title]
     
     sim_scores = list(enumerate(cosine_sim[idx]))
@@ -41,12 +49,11 @@ def recommend():
     title = request.form['title']
     anime_data = load_anime_data('data.csv')
     recommendations = get_cosine_similarity(anime_data, title)
-    if recommendations is None:
-        return jsonify({'error': f'No recommendations found for "{title}".'})
+    
+    if isinstance(recommendations, str):
+        return jsonify({'message': recommendations})
+    
     return jsonify(recommendations.to_dict(orient='records'))
-    # if recommendations is None:
-    #     return render_template('error.html', title=title)
-    # return render_template('recommendations.html', title=title, recommendations=recommendations.to_dict(orient='records'))
 
 if __name__ == '__main__':
     app.run(debug=True)
