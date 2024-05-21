@@ -186,9 +186,7 @@ document
           document
             .getElementById("spinner")
             .classList.remove("fa-spinner", "fa-spin");
-          const recommendationsDiv = document.getElementById(
-            "recommendations"
-          );
+          const recommendationsDiv = document.getElementById("recommendations");
           const error = document.getElementById("error");
 
           recommendationsDiv.innerHTML = "";
@@ -251,5 +249,3 @@ document
         });
     }
   });
-      
-
