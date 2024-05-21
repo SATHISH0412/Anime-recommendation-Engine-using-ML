@@ -186,60 +186,70 @@ document
           document
             .getElementById("spinner")
             .classList.remove("fa-spinner", "fa-spin");
-          const recommendationsDiv = document.getElementById("recommendations");
-          // ---------------------------------------------
-          const a = document.createElement("a");
-          a.href = "#recommendations_section";
-          a.click();
-          // ------------------------------------------
+          const recommendationsDiv = document.getElementById(
+            "recommendations"
+          );
           const error = document.getElementById("error");
-          error.classList.add("none");
 
           recommendationsDiv.innerHTML = "";
+          error.classList.add("none");
 
-          if (data.error) {
-            error.innerHTML = `<b>${data.error}</b>`;
+          if (data.message) {
+            // Display suggestion or error message
+            error.innerHTML = `<b>${data.message}</b>`;
             error.classList.remove("none");
           } else {
-            console.log(data);
+            // Scroll to the recommendations section
+            const a = document.createElement("a");
+            a.href = "#recommendations_section";
+            a.click();
 
+            // Display recommendations
             data.forEach((anime) => {
               const animeItem = document.createElement("div");
               animeItem.classList.add("anime-item");
 
               const animeImage = document.createElement("img");
               animeImage.src = "/static/media/loadingSkeleton.svg";
-              // animeImage.src = "https://via.placeholder.com/150";
               animeImage.alt = anime.title;
               animeImage.className = "zoom-effect";
-              //image fetch
+
+              // Fetch image for the anime
               imgFetch(anime)
                 .then((imageUrl) => {
-                  // console.log("Image URL:", imageUrl);
                   animeImage.src = imageUrl;
                 })
                 .catch((error) => {
-                  // console.error("Failed to fetch image:", error);
+                  console.error("Failed to fetch image:", error);
                 });
 
               const animeTitle = document.createElement("h3");
-              animeTitle.style.color = "#40f09d";
+              animeTitle.style.color = "rgb(0,0,0)";
               animeTitle.textContent = anime.title;
 
-              // const animeDescription = document.createElement("p");
-
-              // animeDescription.textContent = anime.synopsis;
               const rating = document.createElement("p");
               rating.style.color = "red";
-              rating.innerHTML = `<h4>Rating :${anime.rating}</h4>`;
+              rating.innerHTML = `<h4>Rating: ${anime.rating}</h4>`;
+
               animeItem.appendChild(animeImage);
               animeItem.appendChild(animeTitle);
-              // animeItem.appendChild(animeDescription);
               animeItem.appendChild(rating);
 
               recommendationsDiv.appendChild(animeItem);
             });
           }
+        })
+        .catch((error) => {
+          console.error("Error fetching recommendations:", error);
+          document
+            .getElementById("spinner")
+            .classList.remove("fa-spinner", "fa-spin");
+          const errorDiv = document.getElementById("error");
+          errorDiv.innerHTML =
+            "<b>Failed to get recommendations. Please try again.</b>";
+          errorDiv.classList.remove("none");
         });
     }
   });
+      
+
