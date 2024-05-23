@@ -25,11 +25,13 @@ overlay1.onclick = () => {
 document.querySelector("#reg").onclick = () => {
   overlay1.classList.add("fade-in");
   loginForm_div.classList.remove("none");
+  anime_details.classList.add("none");
   overlay1.classList.remove("fade-out");
 };
 document.querySelector("#reg_footer").onclick = () => {
   overlay1.classList.add("fade-in");
   loginForm_div.classList.remove("none");
+  anime_details.classList.add("none");
   overlay1.classList.remove("fade-out");
 };
 

@@ -50,7 +50,7 @@ function show_anime_details(anime) {
       <i class="fa fa-close" style="font-size: 30px; color: rgb(95, 91, 91)"></i>
     </div>
     <div class="anime-details-div" id="animeDiv">
-    <a href="#anime-details" id="animeDivAtag" ></a>
+   
       <div class="img">
         <img src="${anime.imageUrl}" alt="${anime.title}" />
       </div>
@@ -67,7 +67,7 @@ function show_anime_details(anime) {
       </div>
     </div>
   `;
-  document.getElementById("animeDivAtag").click();
+  document.documentElement.scrollTop = 2;
   const close_icon1 = document.querySelector(".close1");
   close_icon1.style.cursor = "pointer";
 
