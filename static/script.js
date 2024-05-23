@@ -4,6 +4,32 @@ const links = document.querySelectorAll(".header .main-navgation a");
 const overlay = document.querySelector(".overlay");
 const overlay1 = document.querySelector(".overlay1");
 
+//notify function------------------------------------
+var notifyTimeout;
+
+function NotifyUser(ErrorType, message, duration) {
+  var errorMessage = document.getElementById("NotifyUser");
+  clearTimeout(notifyTimeout); // Clear any existing timeout
+
+  if (ErrorType === "success") {
+    errorMessage.classList.add("successMessage");
+  } else if (ErrorType === "error") {
+    errorMessage.classList.add("errorMessage");
+  } else {
+    errorMessage.classList.add("errorMessage");
+  }
+  errorMessage.textContent = message;
+
+  errorMessage.classList.remove("none");
+  notifyTimeout = setTimeout(() => {
+    errorMessage.classList.add("none");
+    errorMessage.classList.remove("errorMessage");
+    errorMessage.classList.remove("successMessage");
+  }, duration);
+}
+
+// ---------------------------------------------------------
+
 function openMobileNavgation() {
   menu.classList.add("open");
   navgation.classList.add("fade-in");
@@ -110,7 +136,8 @@ function imgFetch(anime) {
 // SubmitEvent
 submit.addEventListener("click", () => {
   if (!search_input.value) {
-    alert("Please enter an Anime Name...");
+    // alert("Please enter an Anime Name...");
+    NotifyUser("error", "Please enter an Anime Name...", 3000);
   } else {
     document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
   }
@@ -121,7 +148,9 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
     if (!search_input.value) {
-      alert("Please enter an Anime Name...");
+      // alert("Please enter an Anime Name...");
+      NotifyUser("error", "Please enter an Anime Name...", 3000);
+
       return;
     }
     //add spinnner
@@ -134,17 +163,18 @@ document
           .getElementById("spinner")
           .classList.remove("fa-spinner", "fa-spin");
         const recommendationsDiv = document.getElementById("recommendations");
-        const error = document.getElementById("error");
-        error.classList.add("none");
+
         recommendationsDiv.innerHTML = "";
 
         if (data.message) {
-          error.classList.remove("none");
-          error.innerHTML = `<b>${data.message}</b>`;
+          NotifyUser("error", `${data.message}`, 4000);
         } else {
-          document.getElementById(
-            "error"
-          ).innerHTML = `<h3 style="color:green">recommendations For ${search_input.value} </h3>`;
+          NotifyUser(
+            "success",
+            `Recommendations For ${search_input.value}`,
+            4000
+          );
+
           data.forEach((anime) => {
             const animeItem = document.createElement("div");
             animeItem.classList.add("anime-item");
@@ -170,7 +200,10 @@ document
         document
           .getElementById("spinner")
           .classList.remove("fa-spinner", "fa-spin");
-        document.getElementById("error").innerHTML =
-          "<b>Failed to get recommendations. Please try again.</b>";
+        NotifyUser(
+          "error",
+          "Failed to get recommendations. Please try again.",
+          5000
+        );
       });
   });

@@ -175,3 +175,11 @@ form .btn input[type="submit"] {
   font-weight: 500;
   cursor: pointer;
 }
+.spinner {
+  position: absolute; /* Position the spinner icon */
+  top: 25%; /* Center it vertically */
+  left: 85%; /* Center it horizontally */
+  font-size: 25px;
+  color: #000;
+  transform: translate(-50%, -50%); /* Center it precisely */
+}

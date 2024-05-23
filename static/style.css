@@ -72,7 +72,7 @@ body {
   margin: 0 auto;
   max-width: 1200px;
 } */
-.error {
+/* .error {
   padding: 10px;
   text-align: center;
   display: flex;
@@ -83,7 +83,7 @@ body {
   justify-content: center;
   background-color: #ffa4a4;
   color: #d80b0b;
-}
+} */
 .none {
   display: none;
 }
@@ -221,6 +221,38 @@ h2 {
   right: 10px;
   font-size: 20px; /* Adjust icon size */
   cursor: pointer;
+}
+
+#NotifyUser {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 9999;
+  font-size: 21px;
+  font-weight: 500;
+  animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* Error */
+.errorMessage {
+  background-color: #d43013;
+  color: #ecc7c7;
+}
+/* success */
+.successMessage {
+  background-color: #1b9e09;
+  color: #b9e7b9;
 }
 
 /* Responsive Design */
