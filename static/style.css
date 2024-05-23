@@ -229,6 +229,15 @@ h2 {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
   }
+  .anime-details {
+    min-width: 300px; /* Set a minimum width */
+    max-width: 300px; /* Set a minimum width */
+    max-height: 500px;
+    min-height: 500px;
+
+    margin-top: 20vh;
+    margin-bottom: 10vh;
+  }
 }
 
 @media (min-width: 938px) {
