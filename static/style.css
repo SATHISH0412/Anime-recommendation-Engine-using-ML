@@ -168,13 +168,13 @@ h2 {
   min-height: 500px;
   overflow: auto;
   background-color: #fff;
-  background: #e7feff linear-gradient(to bottom, #a7ff96, transparent);
+  background: #ffdaf4 linear-gradient(to bottom, #fffcfc, transparent);
   transition: 0.5s ease-in-out;
   border-radius: 10px;
   margin-top: 50vh;
   margin-bottom: 50vh;
   z-index: 11;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: -9px 8px 19px 1px rgb(3 3 3);
 }
 
 /* Rest of the CSS styles remain the same */
