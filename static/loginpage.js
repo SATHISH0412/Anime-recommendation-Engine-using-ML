@@ -6,6 +6,7 @@ const signupLink = document.querySelector("form .signup-link a");
 const loginForm_div = document.querySelector("#loginForm");
 
 const close_icon = document.querySelector(".close");
+close_icon.style.cursor = "pointer";
 close_icon.onclick = () => {
   overlay1.classList.remove("fade-in");
   loginForm_div.classList.add("none");
