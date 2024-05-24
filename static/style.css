@@ -225,15 +225,20 @@ h2 {
 
 #NotifyUser {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+
   text-align: center;
-  padding: 10px 0;
+  border-radius: 10px;
   z-index: 9999;
-  font-size: 21px;
+  font-size: 15px;
   font-weight: 500;
   animation: slideDown 0.5s ease-in-out;
+
+  padding: 15px 20px; /* Add some padding for spacing */
+
+  top: 50px; /* Top margin of 30px */
+  left: 50%; /* Center horizontally */
+
+  /* transform: translateX(-50%); */
 }
 
 @keyframes slideDown {
@@ -246,13 +251,51 @@ h2 {
 }
 /* Error */
 .errorMessage {
-  background-color: #d43013;
-  color: #ecc7c7;
+  position: relative;
+  background-color: #e9afa5e5;
+  color: #be0e0e;
 }
+.errorMessage::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #f84848;
+  border-radius: 2px;
+  animation: errorBorder 3s linear forwards;
+}
+
+@keyframes errorBorder {
+  to {
+    width: 100%; /* Full width */
+  }
+}
+
 /* success */
 .successMessage {
-  background-color: #1b9e09;
-  color: #b9e7b9;
+  position: relative;
+
+  background-color: #c6e9a5e5;
+  color: #115011;
+}
+.successMessage::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #26a506;
+  border-radius: 2px;
+  animation: errorBorder 3.5s linear forwards;
+}
+
+@keyframes errorBorder {
+  to {
+    width: 100%; /* Full width */
+  }
 }
 
 /* Responsive Design */

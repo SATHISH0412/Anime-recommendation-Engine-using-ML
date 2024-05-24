@@ -13,12 +13,15 @@ function NotifyUser(ErrorType, message, duration) {
 
   if (ErrorType === "success") {
     errorMessage.classList.add("successMessage");
+    errorMessage.innerHTML = `<i class="fa fa-check" style="font-size:20px" aria-hidden="true"></i>  ${message}`;
   } else if (ErrorType === "error") {
+    errorMessage.innerHTML = `<i class="fa fa-exclamation-circle" style="font-size:20px" aria-hidden="true"></i>  ${message}`;
+
     errorMessage.classList.add("errorMessage");
   } else {
     errorMessage.classList.add("errorMessage");
+    errorMessage.innerHTML = `<i class="fa fa-exclamation-circle" style="font-size:20px" aria-hidden="true"></i>  ${message}`;
   }
-  errorMessage.textContent = message;
 
   errorMessage.classList.remove("none");
   notifyTimeout = setTimeout(() => {
@@ -43,6 +46,10 @@ function closeMobileNavgation() {
 }
 
 menu.addEventListener("click", () => {
+  overlay1.classList.remove("fade-in");
+  document.querySelector("#loginForm").classList.add("none");
+
+  overlay1.classList.add("fade-out");
   menu.classList.toggle("open");
   navgation.classList.toggle("fade-in");
   controlOverlay(menu.classList.contains("open") ? "open" : "close");
@@ -137,7 +144,7 @@ function imgFetch(anime) {
 submit.addEventListener("click", () => {
   if (!search_input.value) {
     // alert("Please enter an Anime Name...");
-    NotifyUser("error", "Please enter an Anime Name...", 3000);
+    NotifyUser("error", "Please enter an Anime Name...", 3500);
   } else {
     document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
   }
@@ -149,7 +156,7 @@ document
     event.preventDefault();
     if (!search_input.value) {
       // alert("Please enter an Anime Name...");
-      NotifyUser("error", "Please enter an Anime Name...", 3000);
+      NotifyUser("error", "Please enter an Anime Name...", 3500);
 
       return;
     }
@@ -167,12 +174,12 @@ document
         recommendationsDiv.innerHTML = "";
 
         if (data.message) {
-          NotifyUser("error", `${data.message}`, 4000);
+          NotifyUser("error", `${data.message}`, 3500);
         } else {
           NotifyUser(
             "success",
             `Recommendations For ${search_input.value}`,
-            4000
+            3500
           );
 
           data.forEach((anime) => {
