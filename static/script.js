@@ -9,6 +9,8 @@ var notifyTimeout;
 
 function NotifyUser(ErrorType, message, duration) {
   var errorMessage = document.getElementById("NotifyUser");
+
+  errorMessage.innerHTML = "";
   clearTimeout(notifyTimeout); // Clear any existing timeout
 
   if (ErrorType === "success") {
@@ -28,6 +30,7 @@ function NotifyUser(ErrorType, message, duration) {
     errorMessage.classList.add("none");
     errorMessage.classList.remove("errorMessage");
     errorMessage.classList.remove("successMessage");
+    errorMessage.innerHTML = "";
   }, duration);
 }
 

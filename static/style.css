@@ -233,12 +233,10 @@ h2 {
   font-weight: 500;
   animation: slideDown 0.5s ease-in-out;
 
-  padding: 15px 20px; /* Add some padding for spacing */
-
-  top: 50px; /* Top margin of 30px */
-  left: 50%; /* Center horizontally */
-
-  /* transform: translateX(-50%); */
+  padding: 15px 20px;
+  margin: 10px;
+  top: 30px;
+  left: 20%;
 }
 
 @keyframes slideDown {
@@ -252,7 +250,7 @@ h2 {
 /* Error */
 .errorMessage {
   position: relative;
-  background-color: #e9afa5e5;
+  background-color: #e9afa5ee;
   color: #be0e0e;
 }
 .errorMessage::after {
@@ -277,7 +275,7 @@ h2 {
 .successMessage {
   position: relative;
 
-  background-color: #c6e9a5e5;
+  background-color: #c6e9a5ea;
   color: #115011;
 }
 .successMessage::after {

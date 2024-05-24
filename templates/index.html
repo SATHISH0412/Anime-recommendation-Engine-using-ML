@@ -28,7 +28,11 @@
       href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
     />
   </head>
-  <body>
+
+  <body
+    onoffline=" NotifyUser('error', 'Please Check your Network Connection...', 3500);"
+    ononline="NotifyUser('success', 'Back online !', 2500);"
+  >
     <!-- Overlay -->
     <div class="overlay fade-out glassy"></div>
     <div class="overlay1 fade-out glassy"></div>
