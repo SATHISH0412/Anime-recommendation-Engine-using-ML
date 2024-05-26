@@ -34,6 +34,8 @@ function NotifyUser(ErrorType, message, duration) {
   }, duration);
 }
 
+// --------------------------------------------------------
+
 // ---------------------------------------------------------
 
 function openMobileNavgation() {

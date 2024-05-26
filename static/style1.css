@@ -1,0 +1,75 @@
+body{
+    background-image: url(bacl.jpg);
+    background-size: cover;
+    backdrop-filter: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+#container{
+    height: 65vh;
+    max-width: 50%;
+    background-color: rgba(41, 40, 40, 0.356);
+    backdrop-filter: blur(5px);
+    display: flex;
+    margin: auto;
+    align-content: center;
+    justify-content: center;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+
+#form{
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#form input{
+    padding: 5px 30px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom:  5px;
+    margin: 10px;
+    font-size: 1.2em;
+
+}
+#form textarea{
+    
+    border: none;
+    border-radius: 10px;
+    margin : 10px;
+    font-size: 1.2em;
+    padding-left: 5px;
+    display: flex;
+
+}
+
+#form button{
+    background-color: rgb(113, 187, 113);
+    font-size: 1.5em;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    padding:5px 15px;
+}
+
+#form button:hover{
+    background-color: rgb(44, 131, 44);
+}
+
+#sta{
+    background-color: green;
+    display: none;
+    font-size: 1.3em;
+}
