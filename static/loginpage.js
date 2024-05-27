@@ -301,4 +301,5 @@ document.querySelector(".overlay1").onclick = () => {
   document.querySelector(".overlay1").classList.add("fade-out");
   document.querySelector(".overlay1").classList.remove("fade-in");
   document.querySelector("#loginForm").classList.add("none");
+  document.querySelector("#anime-details").classList.add("none");
 };
