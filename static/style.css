@@ -424,6 +424,9 @@ h2 {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
   }
+  .wish-list {
+    left: 33%;
+  }
   .anime-details {
     min-width: 300px; /* Set a minimum width */
     max-width: 300px; /* Set a minimum width */
