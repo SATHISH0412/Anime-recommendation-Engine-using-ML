@@ -597,7 +597,7 @@ button:hover::after,
 }
 
 @media (max-width: 938px) {
-  .header .main-navgation {
+  .header .main-navigation {
     position: absolute;
     top: calc(100% + 3.875rem);
     left: 0;
@@ -613,7 +613,7 @@ button:hover::after,
     z-index: -1;
     transition: all 0.3s ease-in-out;
   }
-  .header .main-navgation.fade-in {
+  .header .main-navigation.fade-in {
     top: calc(100% + 2.625rem);
     opacity: 1;
     visibility: visible;
@@ -621,27 +621,27 @@ button:hover::after,
   }
 }
 
-.header .main-navgation a {
+.header .main-navigation a {
   padding: 0.625rem 0;
   color: #2d314d;
   font-size: 1rem;
   transition: 0.3s ease-in-out;
 }
 
-.header .main-navgation a:hover {
+.header .main-navigation a:hover {
   color: #9698a6;
 }
 
 @media (min-width: 938px) {
-  .header .main-navgation a {
+  .header .main-navigation a {
     position: relative;
     font-size: 0.875rem;
     color: #9698a6;
   }
-  .header .main-navgation a:not(:last-child) {
+  .header .main-navigation a:not(:last-child) {
     margin-right: 2rem;
   }
-  .header .main-navgation a::after {
+  .header .main-navigation a::after {
     position: absolute;
     content: "";
     left: 0;
@@ -652,10 +652,10 @@ button:hover::after,
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
-  .header .main-navgation a:hover {
+  .header .main-navigation a:hover {
     color: #2d314d;
   }
-  .header .main-navgation a:hover::after {
+  .header .main-navigation a:hover::after {
     opacity: 1;
   }
 }
