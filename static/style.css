@@ -207,6 +207,7 @@ h2 {
 }
 
 .anime-item {
+  position: relative;
   background-color: rgba(218, 215, 215, 0.5);
   padding: 1rem;
   border-radius: 10px;
@@ -217,6 +218,20 @@ h2 {
   box-shadow: 3px 8px 7px black;
   animation-name: sample;
   animation-duration: 1s;
+}
+.wish-list {
+  position: absolute;
+  top: 97%;
+  left: 25%;
+  cursor: pointer;
+}
+.wishlist-btn {
+  all: unset;
+  padding: 10px;
+  color: #faf9f9;
+  font-weight: bold;
+  border-radius: 4px;
+  background-color: #26a506;
 }
 @keyframes sample {
   from {

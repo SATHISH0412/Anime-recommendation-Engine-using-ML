@@ -156,7 +156,9 @@ submit.addEventListener("click", () => {
     document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
   }
 });
-
+function AddtowishList(animeData) {
+  console.log(animeData);
+}
 // Form submit event to fetch and display recommendations
 document
   .getElementById("recommendationForm")
@@ -192,19 +194,55 @@ document
             const animeItem = document.createElement("div");
             animeItem.classList.add("anime-item");
             animeItem.innerHTML = `
+            <div>
             <img src="/static/media/loadingSkeleton.svg" alt="${anime.title}" class="zoom-effect">
             <h3 style="color: rgb(0,0,0);">${anime.title}</h3>
-            <p><h4 style="color: red;">Rating: ${anime.rating}</h4></p>
+            <h4 style="color: red;">Rating: ${anime.rating}</h4>
+           
+             </div>
+              <div class="wish-list">
+              <button class="wishlist-btn" id="wishlist">
+                Add to wishlist
+              </button></div>
           `;
-            recommendationsDiv.appendChild(animeItem);
 
+            recommendationsDiv.appendChild(animeItem);
+            console.log(animeItem.children);
             // Fetch anime details and update the anime item
             fetchAnimeDetails(anime)
               .then((animeDetails) => {
                 animeItem.querySelector("img").src = animeDetails.imageUrl;
-                animeItem.addEventListener("click", () =>
+                animeItem.children[0].addEventListener("click", () =>
                   showAnimeDetails(animeDetails)
                 );
+                animeItem.children[1].addEventListener("click", () => {
+                  if (!sessionStorage.getItem("userid<@#(1029384756)#@>")) {
+                    NotifyUser(
+                      "error",
+                      "You must be logged in to add to a wishlist",
+                      3000
+                    );
+                    document.documentElement.scrollTop = 2;
+
+                    document
+                      .querySelector(".overlay1")
+                      .classList.add("fade-in");
+                    document
+                      .querySelector(".overlay1")
+                      .classList.remove("fade-out");
+                    document
+                      .querySelector("#loginForm")
+                      .classList.remove("none");
+                  } else {
+                    // NotifyUser(
+                    //   "success",
+                    //   "Added to WishList successfully..",
+                    //   3000
+                    // );
+                    NotifyUser("error", "work in progress...", 3000);
+                    AddtowishList(animeDetails);
+                  }
+                });
               })
               .catch((error) => console.error("Failed to fetch data:", error));
           });
