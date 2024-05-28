@@ -26,6 +26,34 @@ const loginBtn = document.querySelector("#login_btn");
 const loginPwd = document.querySelector("#login_password");
 const loginEmail = document.querySelector("#login_email");
 
+// Notify function to show success or error messages
+var notifyTimeout;
+
+function NotifyUser(ErrorType, message, duration) {
+  var errorMessage = document.getElementById("NotifyUser");
+
+  // Clear any existing timeout
+  clearTimeout(notifyTimeout);
+
+  errorMessage.innerHTML = "";
+
+  // Set message type and content
+  if (ErrorType === "success") {
+    errorMessage.classList.add("successMessage");
+    errorMessage.innerHTML = `<i class="fa fa-check" style="font-size:20px" aria-hidden="true"></i> ${message}`;
+  } else {
+    errorMessage.classList.add("errorMessage");
+    errorMessage.innerHTML = `<i class="fa fa-exclamation-circle" style="font-size:20px" aria-hidden="true"></i> ${message}`;
+  }
+
+  // Show the message and hide it after the duration
+  errorMessage.classList.remove("none");
+  notifyTimeout = setTimeout(() => {
+    errorMessage.classList.add("none");
+    errorMessage.classList.remove("errorMessage", "successMessage");
+    errorMessage.innerHTML = "";
+  }, duration);
+}
 // Function to save user data to the database
 const saveUserData = (uid, name, email, pwd, mailverification, loginValue) => {
   set(ref(connectDB, "users/" + uid), {
@@ -230,6 +258,7 @@ const updateUIForLoggedInUser = (uid, userName) => {
       document.querySelector("#loginForm").classList.remove("none");
     };
   } else {
+    document.querySelector("#reg_footer").classList.add("none");
     document.querySelector(".overlay1").classList.remove("fade-in");
     document.querySelector(".overlay1").classList.add("fade-out");
     document.querySelector("#loginForm").classList.add("none");
@@ -261,6 +290,8 @@ const updateUIForLoggedInUser = (uid, userName) => {
 
 // Function to sign out user
 const signOutUser = () => {
+  document.querySelector("#reg_footer").classList.remove("none");
+
   updateUserStatus(userAuthUid, false);
   sessionStorage.removeItem("userid<@#(1029384756)#@>");
   sessionStorage.removeItem("LOgiN#@$%^&;;");
@@ -303,3 +334,23 @@ document.querySelector(".overlay1").onclick = () => {
   document.querySelector("#loginForm").classList.add("none");
   document.querySelector("#anime-details").classList.add("none");
 };
+const AddtowishList = (animeData, elem, uid) => {
+  console.log(animeData);
+  set(ref(connectDB, `users/${uid}/wishlist/${animeData.animeID}`), {
+    // animeID: name,
+    animeName: animeData.title,
+    imageURL: animeData.imageUrl,
+    TimeStamp: Date(),
+  })
+    .then(() => {
+      console.log(elem.children[0]);
+      elem.children[0].innerHTML = `<i class="fa fa-check" style="font-size:21px" ></i> Added`;
+
+      NotifyUser("success", "Added successfully....", 3000);
+    })
+    .catch((e) => {
+      console.error("Error ", e);
+      NotifyUser("error", "Something Went Wrong.. Please try Agin! ", 3000);
+    });
+};
+export { AddtowishList, NotifyUser };

@@ -427,6 +427,9 @@ h2 {
   .wish-list {
     left: 33%;
   }
+  #NotifyUser {
+    left: 20%;
+  }
   .anime-details {
     min-width: 300px; /* Set a minimum width */
     max-width: 300px; /* Set a minimum width */
@@ -491,7 +494,7 @@ h2 {
 button,
 .button {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 0.875rem;
   padding: 0.8125rem 2.1875rem;
   border-radius: 3.125rem;

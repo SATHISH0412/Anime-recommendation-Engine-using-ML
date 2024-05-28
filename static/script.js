@@ -1,38 +1,10 @@
+import { AddtowishList, NotifyUser } from "./loginpage.js";
 // Selecting DOM elements for navigation and overlay
 const menu = document.querySelector(".header .menu");
 const navigation = document.querySelector(".header .main-navigation");
 const links = document.querySelectorAll(".header .main-navigation a");
 const overlay = document.querySelector(".overlay");
 const overlay1 = document.querySelector(".overlay1");
-
-// Notify function to show success or error messages
-var notifyTimeout;
-
-function NotifyUser(ErrorType, message, duration) {
-  var errorMessage = document.getElementById("NotifyUser");
-
-  // Clear any existing timeout
-  clearTimeout(notifyTimeout);
-
-  errorMessage.innerHTML = "";
-
-  // Set message type and content
-  if (ErrorType === "success") {
-    errorMessage.classList.add("successMessage");
-    errorMessage.innerHTML = `<i class="fa fa-check" style="font-size:20px" aria-hidden="true"></i> ${message}`;
-  } else {
-    errorMessage.classList.add("errorMessage");
-    errorMessage.innerHTML = `<i class="fa fa-exclamation-circle" style="font-size:20px" aria-hidden="true"></i> ${message}`;
-  }
-
-  // Show the message and hide it after the duration
-  errorMessage.classList.remove("none");
-  notifyTimeout = setTimeout(() => {
-    errorMessage.classList.add("none");
-    errorMessage.classList.remove("errorMessage", "successMessage");
-    errorMessage.innerHTML = "";
-  }, duration);
-}
 
 // Functions to open and close the mobile navigation
 function openMobileNavigation() {
@@ -131,7 +103,9 @@ function fetchAnimeDetails(anime) {
         return fetchAnimeDetails(anime); // Retry if rate limited
       } else {
         const animeData = data.data[0];
+        // console.log(animeData);
         return {
+          animeID: animeData.mal_id,
           title: animeData.title,
           description: animeData.synopsis,
           year: animeData.aired.prop.from.year,
@@ -156,9 +130,7 @@ submit.addEventListener("click", () => {
     document.getElementById("spinner").classList.add("fa-spinner", "fa-spin");
   }
 });
-function AddtowishList(animeData) {
-  console.log(animeData);
-}
+
 // Form submit event to fetch and display recommendations
 document
   .getElementById("recommendationForm")
@@ -207,7 +179,7 @@ document
           `;
 
             recommendationsDiv.appendChild(animeItem);
-            console.log(animeItem.children);
+            // console.log(animeItem.children[1].children[0]);
             // Fetch anime details and update the anime item
             fetchAnimeDetails(anime)
               .then((animeDetails) => {
@@ -234,13 +206,11 @@ document
                       .querySelector("#loginForm")
                       .classList.remove("none");
                   } else {
-                    // NotifyUser(
-                    //   "success",
-                    //   "Added to WishList successfully..",
-                    //   3000
-                    // );
-                    NotifyUser("error", "work in progress...", 3000);
-                    AddtowishList(animeDetails);
+                    AddtowishList(
+                      animeDetails,
+                      animeItem.children[1],
+                      sessionStorage.getItem("userid<@#(1029384756)#@>")
+                    );
                   }
                 });
               })
