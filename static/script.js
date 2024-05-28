@@ -34,16 +34,8 @@ function NotifyUser(ErrorType, message, duration) {
   }, duration);
 }
 
-// <<<<<<< main
-// --------------------------------------------------------
-
-// ---------------------------------------------------------
-
-function openMobileNavgation() {
-// =======
 // Functions to open and close the mobile navigation
 function openMobileNavigation() {
-
   menu.classList.add("open");
   navigation.classList.add("fade-in");
   controlOverlay("open");
