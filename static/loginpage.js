@@ -336,6 +336,8 @@ document.querySelector(".overlay1").onclick = () => {
 };
 const AddtowishList = (animeData, elem, uid) => {
   console.log(animeData);
+  const buttonElem = elem.children[0];
+
   set(ref(connectDB, `users/${uid}/wishlist/${animeData.animeID}`), {
     // animeID: name,
     animeName: animeData.title,
@@ -344,8 +346,9 @@ const AddtowishList = (animeData, elem, uid) => {
   })
     .then(() => {
       console.log(elem.children[0]);
-      elem.children[0].innerHTML = `<i class="fa fa-check" style="font-size:21px" ></i> Added`;
-
+      buttonElem.innerHTML = `<i class="fa fa-check" style="font-size:21px" ></i> Added`;
+      buttonElem.setAttribute("disabled", "true");
+      buttonElem.style.cursor = "not-allowed";
       NotifyUser("success", "Added successfully....", 3000);
     })
     .catch((e) => {
