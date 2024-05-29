@@ -11,7 +11,7 @@ body {
   align-items: center;
   flex-direction: column;
   padding: 20px;
-  
+
   background: linear-gradient(179deg, #ffc578, transparent);
 }
 #profileIcon {
@@ -133,7 +133,7 @@ body {
   text-align: center;
   border-radius: 10px;
   z-index: 9999;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: 500;
   animation: slideDown 0.5s ease-in-out;
   font-size: 21px;
