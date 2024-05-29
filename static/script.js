@@ -174,7 +174,7 @@ document
              </div>
               <div class="wish-list">
               <button class="wishlist-btn" id="wishlist">
-                Add to wishlist
+               + Add to wishlist
               </button></div>
           `;
 
