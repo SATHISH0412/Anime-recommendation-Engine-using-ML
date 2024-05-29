@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <h3 style="color:#b33838">${wishlist[item].animeName}</h3>
         <div style=" color: rgb(95, 102, 84);font-style: italic;line-height: 0.2;">
        
-        <h4>Populrity :${wishlist[item].popularity}</h4>
+        <h4>Popularity :${wishlist[item].popularity}</h4>
         <h4>Year :${wishlist[item].year}</h4>
         <h4>Episodes : ${wishlist[item].episodes}</h4></div>
         <div class="Remove-wishlist">
@@ -103,7 +103,9 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
         // console.log(wishlistItem.children[3].children[0]);
         wishlistItem.children[3].children[0].addEventListener("click", () => {
-          if (confirm(`Are You sure To Remove "${wishlist[item].animeName}"`)) {
+          if (
+            confirm(`Are You sure To Remove "${wishlist[item].animeName}"?`)
+          ) {
             return RemoveFromWishList(wishlist[item].animeID, wishlistItem);
           }
         });
