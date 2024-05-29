@@ -9,6 +9,22 @@
   box-sizing: border-box;
 }
 
+.logo-img{
+  content: url(log.ico);
+  max-width: 45px;
+  max-height: 45px;
+  border-radius: 50%;
+}
+
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
 html {
   font-size: 100%;
   scroll-behavior: smooth;
