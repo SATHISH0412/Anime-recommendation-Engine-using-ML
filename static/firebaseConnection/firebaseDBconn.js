@@ -31,10 +31,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const connectDB = getDatabase();
+//for firebase authentication
 export {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendEmailVerification,
 };
+
+// Real-time database
 export { connectDB, ref, get, set, child, update, remove };
