@@ -135,7 +135,7 @@ form .field input:focus::placeholder {
 }
 .form-inner form .pass-link a,
 .form-inner form .signup-link a {
-  color: #1a75ff;
+  color: #e5509b;
   text-decoration: none;
 }
 .form-inner form .pass-link a:hover,
