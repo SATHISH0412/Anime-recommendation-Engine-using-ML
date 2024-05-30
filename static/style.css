@@ -16,14 +16,12 @@
   border-radius: 50%;
 }
 
-
 .logo {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-
 
 html {
   font-size: 100%;
@@ -40,7 +38,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(55, 255, 5, 0.685);
+  background-color: rgba(59, 73, 55, 0.685);
   /* outline: 1px solid rgb(0, 128, 255); */
   border-radius: 5px;
 }
@@ -543,7 +541,9 @@ button,
   font-size: 0.875rem;
   padding: 0.8125rem 2.1875rem;
   border-radius: 3.125rem;
-  background: linear-gradient(to right, #31d35c, #2bb7da);
+  background: linear-gradient(to right, #f436ba, #ff0068);
+
+  /* background: linear-gradient(to right, #31d35c, #2bb7da); */
   color: white;
   font-weight: 700;
   cursor: pointer;
@@ -653,7 +653,7 @@ button:hover::after,
   width: 100%;
   padding: 1.0625rem 0;
   z-index: 12;
-  background: rgb(255, 255, 255);
+  background: rgb(255 255 255 / 95%);
   box-shadow: -1px -4px 20px 0px #7aac85;
 }
 
@@ -721,7 +721,9 @@ button:hover::after,
     bottom: -1.25rem;
     width: 100%;
     height: 0.3125rem;
-    background: linear-gradient(to right, #31d35c, #2bb7da);
+    background: linear-gradient(to right, #f436ba, #ff0068);
+
+    /* background: linear-gradient(to right, #31d35c, #2bb7da); */
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
@@ -740,7 +742,7 @@ button:hover::after,
   cursor: pointer;
 }
 
-.header .menu>span {
+.header .menu > span {
   display: block;
   width: 100%;
   height: 0.125rem;
@@ -749,19 +751,19 @@ button:hover::after,
   transition: transform 0.3s ease-in-out;
 }
 
-.header .menu>span:not(:last-child) {
+.header .menu > span:not(:last-child) {
   margin-bottom: 0.3125rem;
 }
 
-.header .menu.open>span:first-child {
+.header .menu.open > span:first-child {
   transform: rotate(45deg);
 }
 
-.header .menu.open>span:nth-child(2) {
+.header .menu.open > span:nth-child(2) {
   transform: scaleX(0);
 }
 
-.header .menu.open>span:last-child {
+.header .menu.open > span:last-child {
   transform: rotate(-45deg);
 }
 
@@ -785,7 +787,8 @@ button:hover::after,
 
 .hero .hero-image {
   position: relative;
-  background: url(https://th.bing.com/th/id/OIP.uc16uVeEZWeCkG6UooVCvQHaDt?w=283&h=175&c=7&r=0&o=5&dpr=1.5&pid=1.7) no-repeat center/cover;
+  background: url(https://th.bing.com/th/id/OIP.uc16uVeEZWeCkG6UooVCvQHaDt?w=283&h=175&c=7&r=0&o=5&dpr=1.5&pid=1.7)
+    no-repeat center/cover;
   min-height: 17.5rem;
   margin-top: 60px;
 }
@@ -809,7 +812,7 @@ button:hover::after,
     content: "";
     position: absolute;
     height: 100%;
-    width: 60%;
+    width: 55%;
     margin-top: 10px;
     background: url(/static/media/anime.png) no-repeat -5% 83%/122%;
   }
