@@ -12,7 +12,7 @@ body {
   flex-direction: column;
   padding: 20px;
 
-  background: linear-gradient(179deg, #ffc578, transparent);
+  background: linear-gradient(179deg, #f731d6, transparent);
 }
 #profileIcon {
   width: 100px;
