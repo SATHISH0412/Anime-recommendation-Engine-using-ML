@@ -56,7 +56,9 @@ function NotifyUser(ErrorType, message, duration) {
 }
 // Function to save user data to the database
 const saveUserData = (uid, name, email, pwd, mailverification, loginValue) => {
-  set(ref(connectDB, "users/" + uid), {
+  set(ref(connectDB, `users/${uid}`), {
+    signupTime: new Date().toString(),
+    lastLoginTime: "Not logged in yet",
     uid: uid,
     UserName: name,
     email: email,
@@ -180,6 +182,7 @@ loginBtn.addEventListener("click", (e) => {
 // Function to update user status in the database
 const updateUserStatus = (uid, status) => {
   update(ref(connectDB, "users/" + uid), {
+    lastLoginTime: new Date().toString(),
     emailVerified: true,
     UserLoggedIn: status,
   })
@@ -234,6 +237,8 @@ const handleAuthError = (e) => {
       break;
     case "auth/too-many-requests":
       errorMsg = "Too many requests. Please try again later.";
+    case "auth/email-already-in-use":
+      errorMsg = "The email address is already in use.";
       break;
     default:
       errorMsg = e.message;
@@ -334,18 +339,23 @@ document.querySelector(".overlay1").onclick = () => {
   document.querySelector("#loginForm").classList.add("none");
   document.querySelector("#anime-details").classList.add("none");
 };
+
+//-----------------ADD wishlist----------------------------------------
 const AddtowishList = (animeData, elem, uid) => {
-  console.log(animeData);
+  // console.log(animeData);
   const buttonElem = elem.children[0];
 
   set(ref(connectDB, `users/${uid}/wishlist/${animeData.animeID}`), {
-    // animeID: name,
+    animeID: animeData.animeID,
     animeName: animeData.title,
     imageURL: animeData.imageUrl,
+    episodes: animeData.episodes,
+    year: animeData.year,
+    popularity: animeData.popularity,
     TimeStamp: Date(),
   })
     .then(() => {
-      console.log(elem.children[0]);
+      // console.log(elem.children[0]);
       buttonElem.innerHTML = `<i class="fa fa-check" style="font-size:21px" ></i> Added`;
       buttonElem.setAttribute("disabled", "true");
       buttonElem.style.cursor = "not-allowed";
@@ -353,7 +363,9 @@ const AddtowishList = (animeData, elem, uid) => {
     })
     .catch((e) => {
       console.error("Error ", e);
-      NotifyUser("error", "Something Went Wrong.. Please try Agin! ", 3000);
+      NotifyUser("error", "Something Went Wrong.. Please try Again! ", 3000);
     });
 };
+//-------------------------------------------------
+
 export { AddtowishList, NotifyUser };
