@@ -9,11 +9,28 @@
   box-sizing: border-box;
 }
 
+.logo-img {
+  content: url(log.ico);
+  max-width: 45px;
+  max-height: 45px;
+  border-radius: 50%;
+}
+
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
 html {
   font-size: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -27,6 +44,7 @@ html {
   /* outline: 1px solid rgb(0, 128, 255); */
   border-radius: 5px;
 }
+
 body {
   color: #9698a6;
   font-size: 0.875rem;
@@ -37,6 +55,7 @@ body {
   /* font-family: "Nunito", sans-serif; */
   font-optical-sizing: auto;
 }
+
 .search-bar input {
   padding: 10px;
   border-radius: 10px;
@@ -45,28 +64,34 @@ body {
 
   border: 1px solid grey;
 }
+
 .search-bar input:hover {
   border: 1px solid rgb(128, 78, 78);
 }
+
 .search-btn {
   padding: 14px;
   border-radius: 20px;
   border: none;
 }
+
 .popular-anime {
   display: grid;
   grid-row: 2;
 }
+
 .recommendations {
   display: grid;
   grid-row: 2;
   margin-bottom: 50px;
 }
+
 .recommendations .anime-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 40px;
 }
+
 /* .container {
   width: 90%;
   margin: 0 auto;
@@ -87,6 +112,7 @@ body {
 .none {
   display: none;
 }
+
 h2 {
   text-align: center;
   margin: 2rem 0;
@@ -214,17 +240,20 @@ h2 {
   text-align: center;
   box-shadow: 2px 2px 3px black;
 }
+
 .anime-item:hover {
   box-shadow: 3px 8px 7px black;
   animation-name: sample;
   animation-duration: 1s;
 }
+
 .wish-list {
   position: absolute;
   top: 97%;
   left: 15%;
   cursor: pointer;
 }
+
 .wishlist-btn {
   all: unset;
   padding: 10px;
@@ -233,10 +262,12 @@ h2 {
   border-radius: 4px;
   background-color: #26a506;
 }
+
 @keyframes sample {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.1);
   }
@@ -284,8 +315,10 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  min-width: 400px; /* Set a minimum width */
-  max-width: 500px; /* Set a minimum width */
+  min-width: 400px;
+  /* Set a minimum width */
+  max-width: 500px;
+  /* Set a minimum width */
   max-height: 800px;
   min-height: 500px;
   overflow: auto;
@@ -341,7 +374,8 @@ h2 {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 20px; /* Adjust icon size */
+  font-size: 20px;
+  /* Adjust icon size */
   cursor: pointer;
 }
 
@@ -365,16 +399,19 @@ h2 {
   0% {
     transform: translateY(-100%);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 /* Error */
 .errorMessage {
   position: relative;
   background-color: #e9afa5ee;
   color: #be0e0e;
 }
+
 .errorMessage::after {
   content: "";
   position: absolute;
@@ -389,7 +426,8 @@ h2 {
 
 @keyframes errorBorder {
   to {
-    width: 100%; /* Full width */
+    width: 100%;
+    /* Full width */
   }
 }
 
@@ -400,6 +438,7 @@ h2 {
   background-color: #c6e9a5ea;
   color: #115011;
 }
+
 .successMessage::after {
   content: "";
   position: absolute;
@@ -414,7 +453,8 @@ h2 {
 
 @keyframes errorBorder {
   to {
-    width: 100%; /* Full width */
+    width: 100%;
+    /* Full width */
   }
 }
 
@@ -424,15 +464,20 @@ h2 {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
   }
+
   .wish-list {
     left: 33%;
   }
+
   #NotifyUser {
     left: 20%;
   }
+
   .anime-details {
-    min-width: 300px; /* Set a minimum width */
-    max-width: 300px; /* Set a minimum width */
+    min-width: 300px;
+    /* Set a minimum width */
+    max-width: 300px;
+    /* Set a minimum width */
     max-height: 500px;
     min-height: 500px;
 
@@ -555,6 +600,7 @@ button:hover::after,
   background: #42ebf1 linear-gradient(to bottom, #48db2a, transparent);
   transition: 0.5s ease-in-out;
 }
+
 .overlay1 {
   position: fixed;
   top: 0;
@@ -565,11 +611,13 @@ button:hover::after,
   background: #3bc9cef5 linear-gradient(to bottom, #48db2ac0, transparent);
   transition: 0.5s ease-in-out;
 }
+
 .glassy {
   background: rgba(143, 233, 136, 0.22);
 
   backdrop-filter: blur(5.2px);
 }
+
 .zoom-effect {
   transition: transform 0.3s ease;
 }
@@ -581,6 +629,7 @@ button:hover::after,
 .tilt-effect:hover {
   transform: rotateY(10deg) rotateX(10deg);
 }
+
 .section-heading {
   text-align: center;
   margin-bottom: 1.875rem;
@@ -634,6 +683,7 @@ button:hover::after,
     z-index: -1;
     transition: all 0.3s ease-in-out;
   }
+
   .header .main-navigation.fade-in {
     top: calc(100% + 2.625rem);
     opacity: 1;
@@ -659,9 +709,11 @@ button:hover::after,
     font-size: 0.875rem;
     color: #9698a6;
   }
+
   .header .main-navigation a:not(:last-child) {
     margin-right: 2rem;
   }
+
   .header .main-navigation a::after {
     position: absolute;
     content: "";
@@ -673,9 +725,11 @@ button:hover::after,
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
+
   .header .main-navigation a:hover {
     color: #2d314d;
   }
+
   .header .main-navigation a:hover::after {
     opacity: 1;
   }
@@ -686,7 +740,7 @@ button:hover::after,
   cursor: pointer;
 }
 
-.header .menu > span {
+.header .menu>span {
   display: block;
   width: 100%;
   height: 0.125rem;
@@ -695,19 +749,19 @@ button:hover::after,
   transition: transform 0.3s ease-in-out;
 }
 
-.header .menu > span:not(:last-child) {
+.header .menu>span:not(:last-child) {
   margin-bottom: 0.3125rem;
 }
 
-.header .menu.open > span:first-child {
+.header .menu.open>span:first-child {
   transform: rotate(45deg);
 }
 
-.header .menu.open > span:nth-child(2) {
+.header .menu.open>span:nth-child(2) {
   transform: scaleX(0);
 }
 
-.header .menu.open > span:last-child {
+.header .menu.open>span:last-child {
   transform: rotate(-45deg);
 }
 
@@ -731,8 +785,7 @@ button:hover::after,
 
 .hero .hero-image {
   position: relative;
-  background: url(https://th.bing.com/th/id/OIP.uc16uVeEZWeCkG6UooVCvQHaDt?w=283&h=175&c=7&r=0&o=5&dpr=1.5&pid=1.7)
-    no-repeat center/cover;
+  background: url(https://th.bing.com/th/id/OIP.uc16uVeEZWeCkG6UooVCvQHaDt?w=283&h=175&c=7&r=0&o=5&dpr=1.5&pid=1.7) no-repeat center/cover;
   min-height: 17.5rem;
   margin-top: 60px;
 }
@@ -751,6 +804,7 @@ button:hover::after,
     min-height: 41rem;
     background-image: none;
   }
+
   .hero .hero-image::before {
     content: "";
     position: absolute;
