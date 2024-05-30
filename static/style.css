@@ -815,6 +815,7 @@ button:hover::after,
     width: 55%;
     margin-top: 10px;
     background: url(/static/media/anime.png) no-repeat -5% 83%/122%;
+    filter: drop-shadow(3px 2px 10px pink);
   }
 }
 
