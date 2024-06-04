@@ -164,87 +164,55 @@ document
           );
           data.forEach((anime) => {
             const animeItem = document.createElement("div");
-            // animeItem.classList.add("anime-item");
-            animeItem.classList.add("card", "swiper-slide");
+            animeItem.classList.add("anime-item");
             animeItem.innerHTML = `
-            
-                  <div class="image-content">
-                    <!-- <span class="overlay"></span> -->
-
-                    <div class="card-image zoom-effect">
-                      <img
-                        src="/static/media/loadingSkeleton.svg"
-                        alt=""
-                        class="card-img"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="card-content">
-                    <span class="name">${anime.title}</span>
-                    <span class="name">Rating:${anime.rating}</span>
-
-                    <button class="btn">View More</button>
-                    <button
-                      class="btn" id="wishlist"
-                      style="background-color: rgb(55, 148, 32)"
-                    >
-                      + Add To wishList
-                    </button>
-                  </div>
-               
+            <div>
+            <img src="/static/media/loadingSkeleton.svg" alt="${anime.title}" class="zoom-effect">
+            <h3 style="color: rgb(0,0,0);">${anime.title}</h3>
+            <h4 style="color: red;">Rating: ${anime.rating}</h4>
            
+             </div>
+              <div class="wish-list">
+              <button class="wishlist-btn" id="wishlist">
+               + Add to wishlist
+              </button></div>
           `;
 
-            // <div>
-            // <img src="/static/media/loadingSkeleton.svg" alt="${anime.title}" class="zoom-effect">
-            // <h3 style="color: rgb(0,0,0);">${anime.title}</h3>
-            // <h4 style="color: red;">Rating: ${anime.rating}</h4>
-
-            //  </div>
-            //   <div class="wish-list">
-            //   <button class="wishlist-btn" id="wishlist">
-            //    + Add to wishlist
-            //   </button></div>
             recommendationsDiv.appendChild(animeItem);
-            console.log(animeItem.children[1].children[2]);
+            // console.log(animeItem.children[1].children[0]);
             // Fetch anime details and update the anime item
             fetchAnimeDetails(anime)
               .then((animeDetails) => {
                 animeItem.querySelector("img").src = animeDetails.imageUrl;
-                animeItem.children[1].children[2].addEventListener(
-                  "click",
-                  () => showAnimeDetails(animeDetails)
+                animeItem.children[0].addEventListener("click", () =>
+                  showAnimeDetails(animeDetails)
                 );
-                animeItem.children[1].children[3].addEventListener(
-                  "click",
-                  () => {
-                    if (!sessionStorage.getItem("userid<@#(1029384756)#@>")) {
-                      NotifyUser(
-                        "error",
-                        "You must be logged in to add to a wishlist",
-                        3000
-                      );
-                      document.documentElement.scrollTop = 2;
+                animeItem.children[1].addEventListener("click", () => {
+                  if (!sessionStorage.getItem("userid<@#(1029384756)#@>")) {
+                    NotifyUser(
+                      "error",
+                      "You must be logged in to add to a wishlist",
+                      3000
+                    );
+                    document.documentElement.scrollTop = 2;
 
-                      document
-                        .querySelector(".overlay1")
-                        .classList.add("fade-in");
-                      document
-                        .querySelector(".overlay1")
-                        .classList.remove("fade-out");
-                      document
-                        .querySelector("#loginForm")
-                        .classList.remove("none");
-                    } else {
-                      AddtowishList(
-                        animeDetails,
-                        animeItem.children[1].children[3],
-                        sessionStorage.getItem("userid<@#(1029384756)#@>")
-                      );
-                    }
+                    document
+                      .querySelector(".overlay1")
+                      .classList.add("fade-in");
+                    document
+                      .querySelector(".overlay1")
+                      .classList.remove("fade-out");
+                    document
+                      .querySelector("#loginForm")
+                      .classList.remove("none");
+                  } else {
+                    AddtowishList(
+                      animeDetails,
+                      animeItem.children[1],
+                      sessionStorage.getItem("userid<@#(1029384756)#@>")
+                    );
                   }
-                );
+                });
               })
               .catch((error) => console.error("Failed to fetch data:", error));
           });
@@ -262,34 +230,3 @@ document
         );
       });
   });
-
-//swiper effect add here.....
-var swiper = new Swiper(".slide-content", {
-  slidesPerView: 3,
-  spaceBetween: 25,
-  loop: true,
-  centerSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    520: {
-      slidesPerView: 2,
-    },
-    950: {
-      slidesPerView: 3,
-    },
-  },
-});
