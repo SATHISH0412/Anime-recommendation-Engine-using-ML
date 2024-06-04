@@ -76,6 +76,7 @@ body {
 .card {
   border-radius: 25px;
   background-color: #f3bfea;
+  
   box-shadow: inset;
 }
 .image-content,
@@ -113,7 +114,7 @@ body {
   color: #707070;
   text-align: center;
 }
-.btn {
+.btn-btn {
   border: none;
   font-size: 16px;
   color: #fff;
@@ -124,7 +125,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.btn:hover {
+.btn-btn:hover {
   background: #265df2;
 }
 
@@ -180,6 +181,7 @@ body {
   padding: 14px;
   border-radius: 20px;
   border: none;
+  background: linear-gradient(to right, #f436ba, #ff0068);
 }
 
 .popular-anime {
