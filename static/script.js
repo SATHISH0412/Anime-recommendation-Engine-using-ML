@@ -184,9 +184,9 @@ document
                     <span class="name">${anime.title}</span>
                     <span class="name">Rating:${anime.rating}</span>
 
-                    <button class="btn-btn">View More</button>
+                    <button class="btn">View More</button>
                     <button
-                      class="btn-btn" id="wishlist"
+                      class="btn" id="wishlist"
                       style="background-color: rgb(55, 148, 32)"
                     >
                       + Add To wishList
