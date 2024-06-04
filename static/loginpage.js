@@ -343,7 +343,7 @@ document.querySelector(".overlay1").onclick = () => {
 //-----------------ADD wishlist----------------------------------------
 const AddtowishList = (animeData, elem, uid) => {
   // console.log(animeData);
-  const buttonElem = elem;
+  const buttonElem = elem.children[0];
 
   set(ref(connectDB, `users/${uid}/wishlist/${animeData.animeID}`), {
     animeID: animeData.animeID,
@@ -355,6 +355,7 @@ const AddtowishList = (animeData, elem, uid) => {
     TimeStamp: Date(),
   })
     .then(() => {
+      // console.log(elem.children[0]);
       buttonElem.innerHTML = `<i class="fa fa-check" style="font-size:21px" ></i> Added`;
       buttonElem.setAttribute("disabled", "true");
       buttonElem.style.cursor = "not-allowed";
