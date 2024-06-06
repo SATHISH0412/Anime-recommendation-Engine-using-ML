@@ -1,5 +1,5 @@
 import {
-  getAuth,
+  auth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -10,9 +10,9 @@ import {
   set,
   child,
   update,
+  signOut,
 } from "./firebaseConnection/firebaseDBconn.js";
 
-const auth = getAuth();
 //get user id from session storage
 const userAuthUid = sessionStorage.getItem("userid<@#(1029384756)#@>");
 //sign up form
