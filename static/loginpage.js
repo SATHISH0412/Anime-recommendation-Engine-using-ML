@@ -57,17 +57,43 @@ function NotifyUser(ErrorType, message, duration) {
 }
 //Forgot password
 const ForgotPassword = (email) => {
-  sendPasswordResetEmail(auth, email.value)
-    .then(() => {
-      NotifyUser("success", "Password recovery mail sent successfully ", 3000);
-      email.value = "";
-    })
-    .catch((e) => {
-      NotifyUser("error", e, 3000);
-      console.log(e);
-      handleAuthError(e);
+  // Reference to the Firebase Realtime Database
+  const usersRef = ref(connectDB, "users");
+
+  // Query the database for the provided email
+  const query = ref(connectDB, `users`);
+
+  get(query).then((snapshot) => {
+    let emailExists = false;
+    snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      if (childData.email === email.value) {
+        emailExists = true;
+      }
     });
+
+    if (emailExists) {
+      // If email exists, send the password reset email
+      sendPasswordResetEmail(auth, email.value)
+        .then(() => {
+          NotifyUser("success", "Password recovery mail sent successfully.", 3000);
+          email.value = "";
+        })
+        .catch((e) => {
+          NotifyUser("error", e.message, 3000);
+          console.log(e);
+          handleAuthError(e);
+        });
+    } else {
+      // If email does not exist, show an error message
+      NotifyUser("error", "Email address not found.", 3000);
+    }
+  }).catch((e) => {
+    console.error("Error checking email existence", e);
+    NotifyUser("error", "Something went wrong. Please try again.", 3000);
+  });
 };
+
 
 // Function to save user data to the database
 const saveUserData = (uid, name, email, pwd, mailverification, loginValue) => {
