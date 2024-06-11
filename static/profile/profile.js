@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     attributeCell.textContent = key;
     if (key === "password") {
-      valueCell.textContent = `*****${value.slice(4)}`;
+      valueCell.textContent =`${"*".repeat(value.length - 2)}${value.slice(-2)}`;
     } else if (key === "UserName") {
       valueCell.innerHTML = `
             <input type="text" id="nameField" value="${value}" readonly />
