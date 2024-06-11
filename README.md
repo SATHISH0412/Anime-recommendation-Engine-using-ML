@@ -1,4 +1,5 @@
 # Anime Recommendation Engine using Machine Learning
+# Sakura Suggest
 
 This project is an Anime Recommendation Engine built using machine learning techniques, specifically utilizing cosine similarity for recommendations. It provides personalized anime recommendations based on user preferences and past interactions.
 
