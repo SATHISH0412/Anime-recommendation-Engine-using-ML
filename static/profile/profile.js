@@ -1,10 +1,12 @@
 import {
+  sendPasswordResetEmail,
   connectDB,
   ref,
   get,
   child,
   remove,
   update,
+  auth,
 } from "../firebaseConnection/firebaseDBconn.js";
 
 // Notify function to show success or error messages
@@ -35,6 +37,19 @@ function NotifyUser(ErrorType, message, duration) {
     errorMessage.innerHTML = "";
   }, duration);
 }
+
+// change password function
+const ChangePassword = (email) => {
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      NotifyUser("success", "Password recovery mail sent successfully.", 3000);
+    })
+    .catch((e) => {
+      NotifyUser("error", e.message, 3000);
+      console.log(e);
+    });
+};
+
 // Fetch user data from Firebase
 const uid = sessionStorage.getItem("userid<@#(1029384756)#@>");
 //------------------------------------------
@@ -81,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           nameField.setAttribute("readonly", true);
           editButton.textContent = "Edit";
-          // Here you can add the code to save the changes, e.g., make an API call
         }
       });
     } else {
@@ -139,7 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <i class="fa fa-trash" aria-hidden="true"></i>  Remove From wishlist
         </button></div>
       `;
-        // console.log(wishlistItem.children[3].children[0]);
         wishlistItem.children[3].children[0].addEventListener("click", () => {
           if (
             confirm(`Are You sure To Remove "${wishlist[item].animeName}"?`)
@@ -152,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  //remove from wishlist
+  // Remove from wishlist
   function RemoveFromWishList(animeID, wishlistItem) {
     console.log(wishlistItem);
     remove(ref(connectDB, `users/${uid}/wishlist/${animeID}`))
@@ -165,11 +178,10 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         NotifyUser("error", "Something Went Wrong.. Please try Agin! ", 3000);
-
         console.error(error);
       });
   }
-
+  
   if (uid) {
     get(child(ref(connectDB), "users/" + uid))
       .then((snapshot) => {
@@ -184,4 +196,26 @@ document.addEventListener("DOMContentLoaded", function () {
     location.replace("error.html");
     console.error("User ID not found in session storage.");
   }
+
+  // Event listener for the change password button
+  document.querySelector(".change-password-btn").addEventListener("click", () => {
+    if (uid) {
+      get(child(ref(connectDB), "users/" + uid))
+        .then((snapshot) => {
+          let userData = snapshot.val();
+          if (userData && userData.email) {
+            ChangePassword(userData.email);
+          } else {
+            NotifyUser("error", "Email not found for the user.", 3000);
+          }
+        })
+        .catch((error) => {
+          NotifyUser("error", "Error fetching user data.", 3000);
+          console.error("Error fetching user data:", error);
+        });
+    } else {
+      NotifyUser("error", "User ID not found.", 3000);
+    }
+  });
+
 });

@@ -39,11 +39,11 @@ body {
 }
 
 .edit-btn {
-  background-color: #4caf50; /* Green */
+  background-color: #1b9721; /* Green */
 }
 
 .edit-btn:hover {
-  background-color: #45a049;
+  background-color: #4caf50;
 }
 #nameField {
   padding: none;
@@ -56,12 +56,21 @@ body {
   outline: #26a506;
 }
 .change-password-btn {
-  background-color: #f44336; /* Red */
+  background-color: #da190b; /* Red */
 }
 
 .change-password-btn:hover {
-  background-color: #da190b;
+  background-color: #f44336;
 }
+
+.signout-btn {
+  background-color: #da190b; /* Red */
+}
+
+.signout-btn:hover {
+  background-color: #f44336;
+}
+
 /* //--------------------------- */
 #profileIcon {
   width: 100px;
