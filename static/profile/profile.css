@@ -14,7 +14,31 @@ body {
 
   background: linear-gradient(179deg, #ff78e9, transparent);
 }
+
 /* //------------------------------------------- */
+.popup-input {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  background-color: #bae0ff;
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.popup-input:focus {
+  transition: all 0.3s ease-in-out;
+
+  border-color: #66afe9;
+  box-shadow: 0 0 10px rgba(102, 175, 233, 0.5);
+  outline: none;
+}
+
+.popup-input::placeholder {
+  color: #999;
+}
 
 .button-container {
   display: flex;
@@ -87,6 +111,7 @@ body {
 /* Profile table */
 #profileTable {
   width: 50%;
+  position: relative;
   margin: 0 auto;
   border-collapse: collapse;
   background-color: white;
