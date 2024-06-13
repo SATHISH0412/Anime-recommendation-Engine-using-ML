@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-
+import os
 app = Flask(__name__)
 
 def load_anime_data(file_path):
