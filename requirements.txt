@@ -1,3 +1,5 @@
 flask
 fuzzywuzzy
 scikit-learn
+pandas
+numpy
