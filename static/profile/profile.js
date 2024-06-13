@@ -62,6 +62,8 @@ const uid = sessionStorage.getItem("userid<@#(1029384756)#@>");
 document.addEventListener("DOMContentLoaded", function () {
   var profileTable = document.getElementById("profileTable");
   var profileIcon = document.getElementById("profileIcon");
+  document.getElementById("Loading").classList.remove("none");
+
   document.getElementById("Loading").innerHTML = "Loading....";
 
   // Function to create a table row with user data
@@ -124,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to populate the profile table
   function populateProfileTable(userData) {
     const loadingElement = document.getElementById("Loading");
+    loadingElement.classList.add("none");
     loadingElement.innerHTML = "";
     document.querySelector(".container").classList.remove("none");
     for (let key in userData) {
