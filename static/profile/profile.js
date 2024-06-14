@@ -8,36 +8,7 @@ import {
   update,
   auth,
 } from "../firebaseConnection/firebaseDBconn.js";
-
-// Notify function to show success or error messages
-var notifyTimeout;
-
-function NotifyUser(ErrorType, message, duration) {
-  var errorMessage = document.getElementById("NotifyUser");
-
-  // Clear any existing timeout
-  clearTimeout(notifyTimeout);
-
-  errorMessage.innerHTML = "";
-
-  // Set message type and content
-  if (ErrorType === "success") {
-    errorMessage.classList.add("successMessage");
-    errorMessage.innerHTML = `<i class="fa fa-check" style="font-size:20px" aria-hidden="true"></i> ${message}`;
-  } else {
-    errorMessage.classList.add("errorMessage");
-    errorMessage.innerHTML = `<i class="fa fa-exclamation-circle" style="font-size:20px" aria-hidden="true"></i> ${message}`;
-  }
-
-  // Show the message and hide it after the duration
-  errorMessage.classList.remove("none");
-  notifyTimeout = setTimeout(() => {
-    errorMessage.classList.add("none");
-    errorMessage.classList.remove("errorMessage", "successMessage");
-    errorMessage.innerHTML = "";
-  }, duration);
-}
-
+import { NotifyUser } from "../functions/functions.js";
 // change password function
 const ChangePassword = (email) => {
   if (confirm("Are you sure you want to change your password?")) {
