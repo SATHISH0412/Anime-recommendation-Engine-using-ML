@@ -47,7 +47,7 @@ def home():
 @app.route('/recommend', methods=['POST'])
 def recommend():
     title = request.form['title']
-    anime_data = load_anime_data('data.csv')
+    anime_data = load_anime_data('anime.csv')
     recommendations = get_cosine_similarity(anime_data, title)
     
     if isinstance(recommendations, str):
