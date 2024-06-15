@@ -8,36 +8,7 @@ import {
   update,
   auth,
 } from "../firebaseConnection/firebaseDBconn.js";
-
-// Notify function to show success or error messages
-var notifyTimeout;
-
-function NotifyUser(ErrorType, message, duration) {
-  var errorMessage = document.getElementById("NotifyUser");
-
-  // Clear any existing timeout
-  clearTimeout(notifyTimeout);
-
-  errorMessage.innerHTML = "";
-
-  // Set message type and content
-  if (ErrorType === "success") {
-    errorMessage.classList.add("successMessage");
-    errorMessage.innerHTML = `<i class="fa fa-check" style="font-size:20px" aria-hidden="true"></i> ${message}`;
-  } else {
-    errorMessage.classList.add("errorMessage");
-    errorMessage.innerHTML = `<i class="fa fa-exclamation-circle" style="font-size:20px" aria-hidden="true"></i> ${message}`;
-  }
-
-  // Show the message and hide it after the duration
-  errorMessage.classList.remove("none");
-  notifyTimeout = setTimeout(() => {
-    errorMessage.classList.add("none");
-    errorMessage.classList.remove("errorMessage", "successMessage");
-    errorMessage.innerHTML = "";
-  }, duration);
-}
-
+import { NotifyUser } from "../functions/functions.js";
 // change password function
 const ChangePassword = (email) => {
   if (confirm("Are you sure you want to change your password?")) {
@@ -62,6 +33,8 @@ const uid = sessionStorage.getItem("userid<@#(1029384756)#@>");
 document.addEventListener("DOMContentLoaded", function () {
   var profileTable = document.getElementById("profileTable");
   var profileIcon = document.getElementById("profileIcon");
+  document.getElementById("Loading").classList.remove("none");
+
   document.getElementById("Loading").innerHTML = "Loading....";
 
   // Function to create a table row with user data
@@ -124,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to populate the profile table
   function populateProfileTable(userData) {
     const loadingElement = document.getElementById("Loading");
+    loadingElement.classList.add("none");
     loadingElement.innerHTML = "";
     document.querySelector(".container").classList.remove("none");
     for (let key in userData) {

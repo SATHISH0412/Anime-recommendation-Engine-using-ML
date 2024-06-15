@@ -15,6 +15,17 @@ body {
   background: linear-gradient(179deg, #ff78e9, transparent);
 }
 
+#Loading {
+  background-color: rgb(184, 170, 170);
+  padding: 10px;
+  border-radius: 2px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
 /* //------------------------------------------- */
 .popup-input {
   position: absolute;
@@ -148,9 +159,8 @@ body {
   opacity: 0;
 }
 .wishlist-item:hover {
-  box-shadow: 3px 8px 7px black;
-  animation-name: sample;
-  animation-duration: 1s;
+  box-shadow: 3px 8px 7px rgb(177, 173, 173);
+  animation: 0.4s sample linear forwards;
 }
 
 .Remove-wishlist {
